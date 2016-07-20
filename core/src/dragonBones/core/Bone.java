@@ -90,6 +90,8 @@ public class Bone extends DBObject{
             slotList.get(i).setArmature(armature);
         }
     }
+
+
     public void invalidUpdate() {
         needUpdate = 2;
     }
