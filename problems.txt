@@ -1,0 +1,2 @@
+1、TextureData rotated问题
+2、多张Texture解决方案
