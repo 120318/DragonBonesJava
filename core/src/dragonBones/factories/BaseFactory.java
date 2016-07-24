@@ -96,10 +96,10 @@ public abstract class BaseFactory {
     }
 
     public Armature buildArmature(String armatureName){
-        return buildArmature(armatureName, "", armatureName, "", "");
+        return buildArmature(armatureName, null, armatureName, null, null);
     }
     public Armature buildArmature(String armatureName, String dragonBonesName){
-        return buildArmature(armatureName, "", armatureName, dragonBonesName, dragonBonesName);
+        return buildArmature(armatureName, null, armatureName, dragonBonesName, dragonBonesName);
     }
     public Armature buildArmature(String armatureName, String skinName, String animationName,
                                                     String dragonBonesName, String textureAtlasName){
@@ -109,7 +109,7 @@ public abstract class BaseFactory {
         SkinData skinData = null;
         SkinData skinDataCopy = null;
 
-        if (!dragonBonesName.isEmpty()){
+        if (dragonBonesName != null){
             if (dragonBonesDataMap.containsKey(dragonBonesName)) {
                 dragonBonesData = dragonBonesDataMap.get(dragonBonesName);
                 armatureData = dragonBonesData.getArmatureData(armatureName);
@@ -119,7 +119,7 @@ public abstract class BaseFactory {
         }
 
         if (armatureData == null) {
-            AutoSearchType searchType = (dragonBonesName.isEmpty() ? AutoSearchType.AST_ALL :
+            AutoSearchType searchType = (dragonBonesName == null ? AutoSearchType.AST_ALL :
                     (autoSearchDragonBonesData ? AutoSearchType.AST_AUTO : AutoSearchType.AST_NONE));
             if (searchType != AutoSearchType.AST_NONE) {
                 Iterator<String> iterator = dragonBonesDataMap.keySet().iterator();
@@ -154,7 +154,7 @@ public abstract class BaseFactory {
                 }
             }
             if (animationArmatureData != null) {
-                skinDataCopy = animationArmatureData.getSkinData("");
+                skinDataCopy = animationArmatureData.getSkinData(null);
             }
         }
 

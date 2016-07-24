@@ -7,9 +7,6 @@ import dragonBones.objects.AnimationData;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by jingzhao on 2016/2/27.
- */
 public class Animation {
 
     public enum AnimationFadeOutMode {NONE, SAME_LAYER, SAME_GROUP, SAME_LAYER_AND_GROUP, ALL}
@@ -25,7 +22,6 @@ public class Animation {
     protected Armature armature;
     protected AnimationState lastAnimationState;
 
-
     public Animation(){
         isPlaying = false;
         autoTween = true;
@@ -33,8 +29,6 @@ public class Animation {
         armature = null;
         lastAnimationState = null;
     }
-
-
 
     public void clear(){
         stop();
@@ -52,10 +46,10 @@ public class Animation {
         }
     }
 
-
     public boolean getIsPlaying(){
         return isPlaying && !getIsComplete();
     }
+
     public boolean getIsComplete(){
         if(lastAnimationState != null){
             if(!lastAnimationState.isComplete){
@@ -70,18 +64,23 @@ public class Animation {
         }
         return true;
     }
+
     public List<String> getAnimationList(){
         return animationList;
     }
+
     public AnimationState getLastAnimationState(){
         return lastAnimationState;
     }
+
     public void setLastAnimationState(AnimationState lastAnimationState) {
         this.lastAnimationState = lastAnimationState;
     }
+
     public float getTimeScale(){
         return timeScale;
     }
+
     public void setTimeScale(float timeScale){
         if(timeScale < 0){
             timeScale = 1;
@@ -92,6 +91,7 @@ public class Animation {
     public List<AnimationData> getAnimationDataList(){
         return animationDataList;
     }
+
     public void setAnimationDataList(List<AnimationData> animationDataList) {
         this.animationDataList = animationDataList;
         animationList.clear();
@@ -99,12 +99,15 @@ public class Animation {
             animationList.add(animationDataList.get(i).name);
         }
     }
+
     public AnimationState gotoAndPlay(String animationName){
         return gotoAndPlay(animationName, -1.f);
     }
+
     public AnimationState gotoAndPlay(String animationName, float fadeInTime){
         return gotoAndPlay(animationName, fadeInTime, -1.0f, -1, 0, "", AnimationFadeOutMode.SAME_LAYER_AND_GROUP, true, true);
     }
+
     public AnimationState gotoAndPlay(
             String animationName,
             float fadeInTime,
@@ -193,6 +196,7 @@ public class Animation {
         }
         return lastAnimationState;
     }
+
     public AnimationState gotoAndStop(
             String animationName,
             float time,
@@ -216,6 +220,7 @@ public class Animation {
         animationState.stop();
         return animationState;
     }
+
     public void play() {
         if(animationDataList.isEmpty()){
             return;
@@ -260,6 +265,7 @@ public class Animation {
         }
         return false;
     }
+
     public AnimationState getState(String name, int layer){
         for(int i = animationStateList.size(); i-- > 0; ){
             AnimationState animationState = animationStateList.get(i);
@@ -275,6 +281,7 @@ public class Animation {
             animationStateList.add(animationState);
         }
     }
+
     protected void removeState(AnimationState animationState){
         if(animationStateList.contains(animationState)){
             animationStateList.remove(animationState);
@@ -289,6 +296,7 @@ public class Animation {
             }
         }
     }
+
     public void updateAnimationState(){
         for(int i = 0, l = animationStateList.size(); i < l; ++i){
             animationStateList.get(i).updateTimelineStates();

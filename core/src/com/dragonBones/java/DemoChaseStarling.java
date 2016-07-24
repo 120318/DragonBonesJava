@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import dragonBones.core.Bone;
 import renderer.DBGdxArmature;
@@ -57,7 +58,7 @@ public class DemoChaseStarling extends ApplicationAdapter{
         armature.setPosition(0, footY);
 
         Texture birdTexture = new Texture(Gdx.files.internal("starling.png"));
-        starlingBird = new DBSpriteDisplay(birdTexture, 0, 0, birdTexture.getWidth(), birdTexture.getHeight());
+        starlingBird = new DBSpriteDisplay(birdTexture, new Rectangle(0, 0, birdTexture.getWidth(), birdTexture.getHeight()), false);
 
         head = armature.getBone("head");
         armR = armature.getBone("armUpperR");

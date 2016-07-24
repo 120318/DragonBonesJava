@@ -12,6 +12,6 @@ public class DesktopLauncher {
 		config.height = 640;
 		config.useGL20 = true;
 		config.samples = 16;
-		new LwjglApplication(new TrimTextureTest(), config);
+		new LwjglApplication(new DemoKnight(), config);
 	}
 }

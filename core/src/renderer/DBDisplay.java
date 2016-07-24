@@ -13,8 +13,10 @@ public class DBDisplay {
     protected Affine2 transform = new Affine2();
     protected Affine2 parentTransform = new Affine2();
     protected Affine2 globalTransform = new Affine2();
+
     protected Vector2 position = new Vector2();
     protected Vector2 anchorPoint = new Vector2();
+
     protected float width, height;
     protected float scaleX = 1.0f, scaleY = 1.0f;
     protected float skewX = 0, skewY = 0;

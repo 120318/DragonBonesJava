@@ -3,9 +3,6 @@ package dragonBones.animation;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by jingzhao on 2016/3/3.
- */
 public class WorldClock implements Animatable{
 
     public static WorldClock clock;
@@ -21,18 +18,22 @@ public class WorldClock implements Animatable{
         }
         return clock;
     }
+
     public float getTime(){
         return time;
     }
+
     public float getTimeScale(){
         return timeScale;
     }
+
     public void setTimeScale(float timeScale){
         if(timeScale < 0 || timeScale != timeScale){
             timeScale = 1.f;
         }
         this.timeScale = timeScale;
     }
+
     public WorldClock(float time, float timeScale){
         isPlaying = true;
         this.time = 0;
@@ -42,11 +43,13 @@ public class WorldClock implements Animatable{
     public boolean contains(Animatable animatable){
         return animatableList.contains(animatable);
     }
+
     public void add(Animatable animatable){
         if(animatable != null & !contains(animatable)){
             animatableList.add(animatable);
         }
     }
+
     public void remove(Animatable animatable){
         if(animatable == null){
             return;
@@ -58,9 +61,11 @@ public class WorldClock implements Animatable{
     public void removeAll(){
         animatableList.clear();
     }
+
     public void play(){
         isPlaying = true;
     }
+
     public void stop(){
         isPlaying = false;
     }

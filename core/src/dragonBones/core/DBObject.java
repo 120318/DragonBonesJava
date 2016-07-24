@@ -3,9 +3,6 @@ package dragonBones.core;
 import dragonBones.geoms.Matrix;
 import dragonBones.geoms.Transform;
 
-/**
- * Created by jingzhao on 2016/2/27.
- */
 public class DBObject {
 
     public String name;

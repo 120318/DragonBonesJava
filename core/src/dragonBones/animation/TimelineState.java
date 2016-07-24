@@ -11,31 +11,33 @@ import dragonBones.objects.TransformTimeline;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by jingzhao on 2016/3/2.
- */
 public class TimelineState {
 
-    private enum UpdateState {UPDATE, UPDATE_ONCE, UNUPDATE };
+    private enum UpdateState {UPDATE, UPDATE_ONCE, UNUPDATE }
+
     private static List<TimelineState> pool = new ArrayList<TimelineState>();
+
     public static TimelineState borrowObject() {
         if(pool.isEmpty()){
             return new TimelineState();
         }
         return pool.remove(pool.size() - 1);
     }
+
     public static void returnObject(TimelineState timelineState) {
         if(!pool.contains(timelineState)){
             pool.add(timelineState);
         }
         timelineState.clear();
     }
+
     private static void clearObjects(){
         for(int i = 0, l = pool.size(); i < l; ++i){
             pool.get(i).clear();
         }
         pool.clear();
     }
+
     public String name;
 
     private boolean blendEnabled;
@@ -50,6 +52,7 @@ public class TimelineState {
     private int totalTime;
     private float weight;
     private float tweenEasing;
+
     private UpdateState updateState;
     private Transform transform = new Transform();
     private Transform durationTransform = new Transform();
@@ -61,12 +64,15 @@ public class TimelineState {
     private Bone bone;
     private AnimationState animationState;
     private TransformTimeline timeline;
+
     public TimelineState(){
 
     }
+
     public boolean isBlendEnabled(){
         return blendEnabled;
     }
+
     public boolean isComplete(){
         return isComplete;
     }
@@ -74,18 +80,23 @@ public class TimelineState {
     public void setWeight(float weight){
         this.weight = weight;
     }
+
     public float getWeight(){
         return weight;
     }
+
     public Transform getTransform(){
         return transform;
     }
+
     public Point getPivot(){
         return pivot;
     }
+
     public AnimationState getAnimationState(){
         return animationState;
     }
+
     public void fadeIn(Bone bone, AnimationState animationState, TransformTimeline timeline) {
         this.bone = bone;
         this.animationState = animationState;
@@ -140,10 +151,12 @@ public class TimelineState {
         }
         bone.addState(this);
     }
+
     public void fadeOut() {
         transform.skewX = DragonBones.formatRadian(transform.skewX);
         transform.skewY = DragonBones.formatRadian(transform.skewY);
     }
+
     public void update(float progress) {
         if(updateState == UpdateState.UPDATE){
             updateMultipleFrame(progress);
@@ -153,6 +166,7 @@ public class TimelineState {
             updateState = UpdateState.UNUPDATE;
         }
     }
+
     public void updateMultipleFrame(float progress){
         progress /= timeline.scale;
         progress += timeline.offset;
@@ -207,8 +221,7 @@ public class TimelineState {
             TransformFrame prevFrame = null;
             TransformFrame currentFrame = null;
 
-            for (int i = 0, l = this.timeline.frameList.size(); i < l; ++i)
-            {
+            for (int i = 0, l = this.timeline.frameList.size(); i < l; ++i) {
                 if (this.currentFrameIndex < 0) {
                     this.currentFrameIndex = 0;
                 }
@@ -260,6 +273,7 @@ public class TimelineState {
             }
         }
     }
+
     public void updateToNextFrame(int currentPlayTimes){
         boolean tweenEnabled = false;
         int nextFrameIndex = currentFrameIndex + 1;
@@ -469,6 +483,7 @@ public class TimelineState {
             }
         }
     }
+
     public void updateTween(){
         float progress = (currentTime - currentFramePosition) / (float)(currentFrameDuration);
 
@@ -545,6 +560,7 @@ public class TimelineState {
             }
         }
     }
+
     public void updateSingleFrame(){
         TransformFrame currentFrame = (TransformFrame)(timeline.frameList.get(0)/*front()*/);
         bone.arriveAtFrame(currentFrame, this, animationState, false);
@@ -593,6 +609,7 @@ public class TimelineState {
             }
         }
     }
+
     public void clear(){
         if(bone != null){
             bone.removeState(this);

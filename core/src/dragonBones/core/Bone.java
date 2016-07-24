@@ -1,6 +1,5 @@
 package dragonBones.core;
 
-import com.badlogic.gdx.Gdx;
 import dragonBones.animation.AnimationState;
 import dragonBones.animation.TimelineState;
 import dragonBones.events.EventData;

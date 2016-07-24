@@ -228,7 +228,7 @@ public class XMLDataParser {
     }
 
     private void transformAnimationData(AnimationData animationData, ArmatureData armatureData) {
-        SkinData skinData = armatureData.getSkinData("");
+        SkinData skinData = armatureData.getSkinData(null);
         for (int i = 0, l = armatureData.boneDataList.size(); i < l; ++i) {
             BoneData boneData = armatureData.boneDataList.get(i);
             TransformTimeline timeline = animationData.getTimeline(boneData.name);

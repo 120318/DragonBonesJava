@@ -10,11 +10,10 @@ import dragonBones.objects.Frame;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by jingzhao on 2016/2/29.
- */
 public class AnimationState {
-    public enum FadeState {FADE_BEFORE, FADING, FADE_COMPLETE};
+
+    public enum FadeState {FADE_BEFORE, FADING, FADE_COMPLETE}
+
     private static List<AnimationState> pool = new ArrayList<AnimationState>();
 
     public static AnimationState borrowObject(){
@@ -36,19 +35,19 @@ public class AnimationState {
         }
         pool.clear();
     }
+
     public boolean additiveBlending;
     public boolean isComplete;
-    public int layer;
-    public String group;
     public boolean autoTween;
     public boolean autoFadeOut;
     public boolean displayControl;
     public boolean lastFrameAutoTween;
+    public int layer;
     public float fadeOutTime;
     public float weight;
-    public FadeState fadeState;
+    public String group;
     public String name;
-
+    public FadeState fadeState;
 
     private boolean isPlaying;
     private boolean isFadeOut;
@@ -82,39 +81,50 @@ public class AnimationState {
     public boolean getIsComplete(){
         return isComplete;
     }
+
     public boolean getIsplaying(){
         return (isPlaying && !isComplete);
     }
+
     public int getCurrentPlayTimes(){
         return currentPlayTimes < 0 ? 0 : currentPlayTimes;
     }
+
     public int getLayer(){
         return layer;
     }
+
     public float getTotalTime(){
         return totalTime * 0.001f;
     }
+
     public float getCurrentWeight(){
         return fadeWeight * weight;
     }
+
     public String getGroup(){
         return group;
     }
+
     public AnimationData getClip(){
         return clip;
     }
+
     public void setAdditiveBlending(boolean value){
         additiveBlending = value;
     }
+
     public void setAutoFadeOut(boolean value, float fadeOutTime){
         autoFadeOut = value;
         if(fadeOutTime >= 0){
             this.fadeOutTime = fadeOutTime;
         }
     }
+
     public void setWeight(float value){
         weight = value;
     }
+
     public void setFrameTween(boolean autoTween, boolean lastFrameAutoTween){
         this.autoTween = autoTween;
         this.lastFrameAutoTween = lastFrameAutoTween;
@@ -123,6 +133,7 @@ public class AnimationState {
     public int getPlayTimes(){
         return playTimes;
     }
+
     public void setPlayTimes(int playTimes){
         this.playTimes = playTimes;
         if(DragonBones.round(totalTime * 0.001f * clip.frameRate) < 2){
@@ -133,9 +144,11 @@ public class AnimationState {
         }
         autoFadeOut = playTimes < 0 ? true : false;
     }
+
     public float getCurrentTime(){
         return currentTime < 0 ? 0.f : currentTime * 0.001f;
     }
+
     public void setCurrentTime(float currentTime){
         if(currentTime < 0 || currentTime != currentTime){
             currentTime = 0.f;
@@ -143,15 +156,18 @@ public class AnimationState {
         this.time = currentTime;
         this.currentTime = (int)(this.time * 1000.f);
     }
+
     public float getTimeScale(){
         return timeScale;
     }
+
     public void setTimeScale(float timeScale) {
         if (timeScale != timeScale) {
             timeScale = 1.f;
         }
         this.timeScale = timeScale;
     }
+
     public void fadeIn(Armature armature, AnimationData clip, float fadeTotalTime, float timeScale, int playTimes, boolean pausePlayhead) {
         this.armature = armature;
         this.clip = clip;
@@ -227,6 +243,7 @@ public class AnimationState {
     public void play(){
         this.isPlaying = true;
     }
+
     public void stop() {
         this.isPlaying = false;
     }
@@ -234,6 +251,7 @@ public class AnimationState {
     public boolean hasMixingTransform(String timelineName){
         return mixingTransforms.contains(timelineName);
     }
+
     public void addMixingTransform(String timelineName, boolean recursive){
         if (recursive) {
             Bone currentBone = null;
@@ -264,11 +282,9 @@ public class AnimationState {
             // From root to leaf
             for (int i = this.armature.getBones().size(); i-- > 0;) {
                 Bone bone = this.armature.getBones().get(i);
-
                 if (bone.name.equals(timelineName)) {
                     currentBone = bone;
                 }
-
                 if (currentBone != null && (currentBone == bone || currentBone.contains(bone))) {
                     if(this.mixingTransforms.contains(bone.name)){
                         this.mixingTransforms.remove(bone.name);
@@ -281,9 +297,9 @@ public class AnimationState {
                 this.mixingTransforms.remove(timelineName);
             }
         }
-
         updateTimelineStates();
     }
+
     public void removeAllMixingTransform(){
         mixingTransforms.clear();
         updateTimelineStates();
@@ -297,6 +313,7 @@ public class AnimationState {
         }
         return isFadeOut && fadeState == FadeState.FADE_COMPLETE;
     }
+
     public void addTimelineState(String timelineName){
         Bone bone = armature.getBone(timelineName);
 
@@ -312,20 +329,20 @@ public class AnimationState {
             timelineStateList.add(timelineState);
         }
     }
+
     public void removeTimelineState(TimelineState timelineState){
         if(timelineStateList.contains(timelineState)){
             TimelineState.returnObject(timelineState);
             timelineStateList.remove(timelineState);
         }
     }
+
     public void advanceFadeTime(float passedTime){
         boolean fadeStartFlg = false;
         boolean fadeCompleteFlg = false;
-
         if (fadeBeginTime >= 0) {
             FadeState fadeState = this.fadeState;
             this.fadeCurrentTime += passedTime < 0 ? -passedTime : passedTime;
-
             if (this.fadeCurrentTime >= this.fadeBeginTime + this.fadeTotalTime) {
                 // fade complete
                 if (this.fadeWeight == 1 || this.fadeWeight == 0) {
@@ -356,12 +373,10 @@ public class AnimationState {
                 if (this.fadeState == FadeState.FADE_BEFORE) {
                     fadeStartFlg = true;
                 }
-
                 // (_fadeState == FadeState::FADE_BEFORE || _fadeState == FadeState::FADING) && fadeState == FadeState::FADE_COMPLETE
                 if (fadeState == FadeState.FADE_COMPLETE) {
                     fadeCompleteFlg = true;
                 }
-
                 this.fadeState = fadeState;
             }
         }
@@ -399,18 +414,17 @@ public class AnimationState {
             }
         }
     }
+
     public void advanceTimelineTime(float passedTime){
         if (isPlaying && !pausePlayheadInFade) {
             time += passedTime;
         }
-
         boolean startFlg = false;
         boolean completeFlg = false;
         boolean loopCompleteFlg = false;
         boolean isThisComplete = false;
         int currentPlayTimes = 0;
         int currentTime = (int)(time * 1000.f);
-
         if (playTimes == 0) {
             isThisComplete = false;
             currentPlayTimes = (int)(Math.ceil(Math.abs(currentTime) / (float)(this.totalTime)));
@@ -421,7 +435,6 @@ public class AnimationState {
         }
         else {
             int totalTimes = playTimes * totalTime;
-
             if (currentTime >= totalTimes) {
                 currentTime = totalTimes;
                 isThisComplete = true;
@@ -437,10 +450,8 @@ public class AnimationState {
             if (currentTime < 0) {
                 currentTime += totalTimes;
             }
-
             currentPlayTimes = (int)(Math.ceil(currentTime / (float)(totalTime)));
             currentTime -= (int)(Math.floor(currentTime / (float)(totalTime))) * totalTime;
-
             if (isThisComplete) {
                 currentTime = totalTime;
             }
@@ -535,6 +546,7 @@ public class AnimationState {
             }
         }
     }
+
     public void updateMainTimeline(boolean isThisComplete){
         if (!clip.frameList.isEmpty()) {
             Frame prevFrame = null;
@@ -585,6 +597,7 @@ public class AnimationState {
             }
         }
     }
+
     public void clear(){
         for(int i = timelineStateList.size(); i-- > 0; ){
             TimelineState.returnObject(timelineStateList.get(i));

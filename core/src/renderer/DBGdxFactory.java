@@ -2,6 +2,7 @@ package renderer;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import dragonBones.animation.Animation;
 import dragonBones.core.Armature;
@@ -145,7 +146,7 @@ public class DBGdxFactory extends BaseFactory {
         int height = rotated ? textureData.width : textureData.height;
         Vector2 offset = new Vector2();
         Vector2 originSize = new Vector2(width, height);
-
+        Rectangle rectangle = new Rectangle(x, y, width, height);
         DBSpriteDisplay display = null;
         if (textureData.frame != null) {
 //             spriteframe !!!!!!!!!!!!!!!!!
@@ -157,14 +158,11 @@ public class DBGdxFactory extends BaseFactory {
             // y use cocos2d coordinates
             offset.x = (width - originSize.x) * 0.5f + frameX;
             offset.y = (originSize.y - height) * 0.5f - frameY;
-
-
-
-            DBSpriteDisplay sprite = new DBSpriteDisplay(texture, rect, textureData.rotated, offset, originSize);
+            display = new DBSpriteDisplay(texture, rectangle, rotated, offset, originSize);
         }
         else
         {
-            display = new DBSpriteDisplay(texture, x, y, width, height);
+            display = new DBSpriteDisplay(texture, rectangle, rotated);
         }
         // sprite
 

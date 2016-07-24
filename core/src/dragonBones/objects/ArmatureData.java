@@ -104,7 +104,7 @@ public class ArmatureData {
             return null;
         }
 
-        if (skinName == null) {
+        if (skinName == null || skinName.equals("")) {
             return getDefaultSkinData();
         }
 

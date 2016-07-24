@@ -11,10 +11,6 @@ import dragonBones.objects.SlotData;
 import java.util.AbstractMap;
 import java.util.List;
 
-
-/**
- * Created by jingzhao on 2016/2/27.
- */
 public abstract class Slot extends DBObject{
 
     protected boolean isShowDisplay;
