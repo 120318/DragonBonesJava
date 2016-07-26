@@ -11,18 +11,18 @@ public class DragonBonesRenderer {
     public void render(SpriteBatch batch, Armature armature){
         for(Slot slot : armature.getSlots()){
             DBGdxSlot gdxSlot = (DBGdxSlot)slot;
-            DBDisplay display = gdxSlot.getGdxDisplay();
+            DBGdxDisplay display = gdxSlot.getGdxDisplay();
             if(display == null || !gdxSlot.isShowDisplay()){
                 continue;
             }
-            display.setParentTransform(((DBDisplay)armature.getDisplay()).getGlobalTransform());
+            display.setParentTransform(((DBGdxDisplay)armature.getDisplay()).getGlobalTransform());
             setBatchBlend(batch, slot.getBlendMode());
-            if(display instanceof DBSpriteDisplay){
+            if(display instanceof DBGdxSpriteDisplay){
                 if(display.isVisible()) {
-                    batch.draw(((DBSpriteDisplay) display).getRegion().getTexture(), ((DBSpriteDisplay) display).getVertices(), 0, 20);
+                    batch.draw(((DBGdxSpriteDisplay) display).getRegion().getTexture(), ((DBGdxSpriteDisplay) display).getVertices(), 0, 20);
                 }
             }
-            else if(display instanceof DBDisplay){
+            else if(display instanceof DBGdxDisplay){
                 render(batch, gdxSlot.getChildArmature());
             }
         }

@@ -3,7 +3,7 @@ package com.dragonBones.renderer;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.math.Vector2;
 
-public class DBDisplay {
+public class DBGdxDisplay {
 
     protected Affine2 transform = new Affine2();
     protected Affine2 parentTransform = new Affine2();
@@ -21,7 +21,7 @@ public class DBDisplay {
 
     private Object userData;
 
-    public DBDisplay(){
+    public DBGdxDisplay(){
 
     }
 

@@ -10,21 +10,21 @@ public class DBGdxSlot extends Slot {
         super(slotData);
     }
 
-    public DBDisplay getGdxDisplay(){
-        return (DBDisplay)display;
+    public DBGdxDisplay getGdxDisplay(){
+        return (DBGdxDisplay)display;
     }
 
     @Override
     public void updateDisplayVisible(boolean visible) {
         if(display != null && parent != null){
-            ((DBDisplay)display).setVisible(visible);
+            ((DBGdxDisplay)display).setVisible(visible);
         }
     }
 
     @Override
     public void updateDisplayColor(int aOffset, int rOffset, int gOffset, int bOffset, float aMultiplier, float rMultiplier, float gMultiplier, float bMultiplier) {
         if(display != null){
-            DBDisplay gdxDisplay = (DBDisplay)display;
+            DBGdxDisplay gdxDisplay = (DBGdxDisplay)display;
             super.updateDisplayColor(aOffset, rOffset, gOffset, bOffset, aMultiplier, rMultiplier, gMultiplier, bMultiplier);
             gdxDisplay.setColor(rMultiplier, gMultiplier, bMultiplier, aMultiplier);
         }
@@ -33,7 +33,7 @@ public class DBGdxSlot extends Slot {
     @Override
     public void updateDisplayTransform() {
         if(display != null){
-            DBDisplay gdxDisplay = (DBDisplay)display;
+            DBGdxDisplay gdxDisplay = (DBGdxDisplay)display;
             gdxDisplay.setScaleX(global.scaleX);
             gdxDisplay.setScaleY(global.scaleY);
             gdxDisplay.setRotationSkewX(MathUtils.radDeg * global.skewX);

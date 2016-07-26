@@ -44,7 +44,7 @@ public class DemoKnight extends ApplicationAdapter{
 
     List<String> weaponList;
     List<Integer> weaponLevelList;
-    List<DBDisplay> arrowList;
+    List<DBGdxDisplay> arrowList;
 
     DBEventHandler eventHandler;
 
@@ -86,7 +86,7 @@ public class DemoKnight extends ApplicationAdapter{
         weaponLevelList.add(0);
         weaponLevelList.add(0);
         weaponLevelList.add(0);
-        arrowList = new ArrayList<DBDisplay>();
+        arrowList = new ArrayList<DBGdxDisplay>();
         isAttacking = false;
         isComboAttack = false;
         hitCount = 1;
@@ -159,8 +159,8 @@ public class DemoKnight extends ApplicationAdapter{
     }
 
     private void renderArrow(SpriteBatch batch){
-        for(DBDisplay display : arrowList){
-            batch.draw(((DBSpriteDisplay) display).getRegion().getTexture(), ((DBSpriteDisplay) display).getVertices(), 0, 20);
+        for(DBGdxDisplay display : arrowList){
+            batch.draw(((DBGdxSpriteDisplay) display).getRegion().getTexture(), ((DBGdxSpriteDisplay) display).getVertices(), 0, 20);
         }
     }
 
@@ -226,7 +226,7 @@ public class DemoKnight extends ApplicationAdapter{
     }
 
     private void createArrow(float r, Vector2 vector2){
-        DBDisplay arrowDisplay = (DBDisplay)DBGdxFactory.getInstance().getTextureDisplay(getWeaponName("arrow", 1), null, null);
+        DBGdxDisplay arrowDisplay = (DBGdxDisplay)DBGdxFactory.getInstance().getTextureDisplay(getWeaponName("arrow", 1), null, null);
         arrowDisplay.setPosition(vector2.x ,vector2.y);
         arrowDisplay.setRotation(MathUtils.radDeg * r);
         Vector2 speedVec = new Vector2();
@@ -238,7 +238,7 @@ public class DemoKnight extends ApplicationAdapter{
 
     private void updateArrows(){
         for(int i = 0, l = arrowList.size(); i < l; ++i){
-            DBDisplay arrowDisplay = arrowList.get(i);
+            DBGdxDisplay arrowDisplay = arrowList.get(i);
             Vector2 speedVec = (Vector2)arrowDisplay.getUserData();
             if(arrowDisplay.getY() < -400){
                 if(i == l - 1){

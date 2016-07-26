@@ -114,7 +114,7 @@ public class DBGdxFactory extends BaseFactory {
     protected Armature generateArmature(ArmatureData armatureData) {
         Animation animation = new Animation();
         // sprite
-        DBDisplay display = new DBDisplay();
+        DBGdxDisplay display = new DBGdxDisplay();
         // in libgdx it doesn't need?
         /*display->setCascadeColorEnabled(true);
         display->setCascadeOpacityEnabled(true);
@@ -149,7 +149,7 @@ public class DBGdxFactory extends BaseFactory {
         Vector2 offset = new Vector2();
         Vector2 originSize = new Vector2(width, height);
         Rectangle rectangle = new Rectangle(x, y, width, height);
-        DBSpriteDisplay display = null;
+        DBGdxSpriteDisplay display = null;
         if (textureData.frame != null) {
 //             spriteframe !!!!!!!!!!!!!!!!!
             float frameX = -textureData.frame.x;
@@ -160,11 +160,11 @@ public class DBGdxFactory extends BaseFactory {
             // y use cocos2d coordinates
             offset.x = (width - originSize.x) * 0.5f + frameX;
             offset.y = (originSize.y - height) * 0.5f - frameY;
-            display = new DBSpriteDisplay(texture, rectangle, rotated, offset, originSize);
+            display = new DBGdxSpriteDisplay(texture, rectangle, rotated, offset, originSize);
         }
         else
         {
-            display = new DBSpriteDisplay(texture, rectangle, rotated);
+            display = new DBGdxSpriteDisplay(texture, rectangle, rotated);
         }
         // sprite
 

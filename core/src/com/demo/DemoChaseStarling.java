@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.dragonBones.core.Bone;
 import com.dragonBones.renderer.DBGdxArmature;
 import com.dragonBones.renderer.DBGdxFactory;
-import com.dragonBones.renderer.DBSpriteDisplay;
+import com.dragonBones.renderer.DBGdxSpriteDisplay;
 import com.dragonBones.renderer.DragonBonesRenderer;
 
 /**
@@ -25,7 +25,7 @@ public class DemoChaseStarling extends ApplicationAdapter{
     DragonBonesRenderer renderer;
 
     DBGdxArmature armature;
-    DBSpriteDisplay starlingBird;
+    DBGdxSpriteDisplay starlingBird;
 
     Bone head;
     Bone armR;
@@ -57,7 +57,7 @@ public class DemoChaseStarling extends ApplicationAdapter{
         armature.setPosition(0, footY);
 
         Texture birdTexture = new Texture(Gdx.files.internal("starling.png"));
-        starlingBird = new DBSpriteDisplay(birdTexture, new Rectangle(0, 0, birdTexture.getWidth(), birdTexture.getHeight()), false);
+        starlingBird = new DBGdxSpriteDisplay(birdTexture, new Rectangle(0, 0, birdTexture.getWidth(), birdTexture.getHeight()), false);
 
         head = armature.getBone("head");
         armR = armature.getBone("armUpperR");

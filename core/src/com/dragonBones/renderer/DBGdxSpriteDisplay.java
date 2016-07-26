@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.NumberUtils;
 
 import static com.badlogic.gdx.graphics.g2d.SpriteBatch.*;
 
-public class DBSpriteDisplay extends DBDisplay {
+public class DBGdxSpriteDisplay extends DBGdxDisplay {
 
     private Vector2 tl = new Vector2();
     private Vector2 tr = new Vector2();
@@ -21,7 +21,7 @@ public class DBSpriteDisplay extends DBDisplay {
     private Vector2 offset = new Vector2();
     private Rectangle regionRect = new Rectangle();
 
-    public DBSpriteDisplay(Texture texture, Rectangle rectangle, boolean rotated) {
+    public DBGdxSpriteDisplay(Texture texture, Rectangle rectangle, boolean rotated) {
         regionRect = new Rectangle(rectangle);
         if(rotated) {
             region = new TextureRegion(texture, (int) rectangle.x, (int) rectangle.y, (int) rectangle.height, (int) rectangle.width);
@@ -33,8 +33,8 @@ public class DBSpriteDisplay extends DBDisplay {
         setRegion(region, rotated);
         initColor();
     }
-    public DBSpriteDisplay(Texture texture, Rectangle rectangle, boolean rotated,
-                           Vector2 offset, Vector2 originSize) {
+    public DBGdxSpriteDisplay(Texture texture, Rectangle rectangle, boolean rotated,
+                              Vector2 offset, Vector2 originSize) {
         this(texture, rectangle, rotated);
         this.offset.x = offset.x + (originSize.x - rectangle.width) / 2;
         this.offset.y = offset.y + (originSize.y - rectangle.height) / 2;

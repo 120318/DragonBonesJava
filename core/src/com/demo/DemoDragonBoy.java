@@ -46,7 +46,7 @@ public class DemoDragonBoy extends ApplicationAdapter{
         factory.loadTextureAtlas(Gdx.files.internal("DragonBoy/texture.xml"), "DragonBoy");
         armature = factory.buildArmature("dragonBoy");
         armature.setPosition(480, 200);
-        ((DBDisplay)armature.getDisplay()).setScale(0.5f);
+        ((DBGdxDisplay)armature.getDisplay()).setScale(0.5f);
         armature.getDBEventManager().addHandle(new DBEventHandler(){
             @Override
             public void handle(EventData eventData) {

@@ -7,16 +7,16 @@ import com.dragonBones.objects.ArmatureData;
 
 public class DBGdxArmature extends Armature {
 
-    public DBGdxArmature(ArmatureData armatureData, Animation animation, EventManager handler, DBDisplay display){
+    public DBGdxArmature(ArmatureData armatureData, Animation animation, EventManager handler, DBGdxDisplay display){
         super(armatureData, animation, handler, display);
     }
 
     public void setPosition(float x, float y) {
-        ((DBDisplay)display).setPosition(x, y);
+        ((DBGdxDisplay)display).setPosition(x, y);
     }
 
-    public DBDisplay getDBDisplay(){
-        return (DBDisplay)display;
+    public DBGdxDisplay getDBDisplay(){
+        return (DBGdxDisplay)display;
     }
 
     public DBEventManager getDBEventManager(){
