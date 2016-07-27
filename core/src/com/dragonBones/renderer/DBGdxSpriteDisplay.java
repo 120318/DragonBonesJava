@@ -33,12 +33,14 @@ public class DBGdxSpriteDisplay extends DBGdxDisplay {
         setRegion(region, rotated);
         initColor();
     }
+
     public DBGdxSpriteDisplay(Texture texture, Rectangle rectangle, boolean rotated,
                               Vector2 offset, Vector2 originSize) {
         this(texture, rectangle, rotated);
         this.offset.x = offset.x + (originSize.x - rectangle.width) / 2;
         this.offset.y = offset.y + (originSize.y - rectangle.height) / 2;
     }
+
     private void initColor(){
         // init color is (1, 1, 1, 1)
         float color = NumberUtils.intToFloatColor(-1);

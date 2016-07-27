@@ -11,24 +11,23 @@ import com.dragonBones.DragonBones;
 public class DBGdxTextureAtlas extends DBTextureAtlas implements Disposable{
 
     public static Pixmap.Format getGdxFormat(DragonBones.PixelFormat format) {
-        Pixmap.Format pixmapFormat = Pixmap.Format.RGBA8888;
+        Pixmap.Format gdxPixelFormat = Pixmap.Format.RGBA8888;
         switch(format){
             case RGB565:
-                pixmapFormat = Pixmap.Format.RGB565;
+                gdxPixelFormat = Pixmap.Format.RGB565;
                 break;
             case RGB888:
-                pixmapFormat = Pixmap.Format.RGB888;
+                gdxPixelFormat = Pixmap.Format.RGB888;
                 break;
             case RGBA4444:
-                pixmapFormat = Pixmap.Format.RGBA4444;
+                gdxPixelFormat = Pixmap.Format.RGBA4444;
                 break;
             case RGBA8888:
-                pixmapFormat = Pixmap.Format.RGBA8888;
+                gdxPixelFormat = Pixmap.Format.RGBA8888;
                 break;
             case AUTO:
-
         }
-        return pixmapFormat;
+        return gdxPixelFormat;
     }
 
     private Texture texture;

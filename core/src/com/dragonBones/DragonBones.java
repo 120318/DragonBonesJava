@@ -13,6 +13,7 @@ public class DragonBones {
     public static float round(float value){
         return (value > 0.0f) ? (float)Math.floor(value + 0.5f) : (float)Math.ceil(value - 0.5f);
     }
+
     public static float formatRadian(float radian){
         // fmod
         radian = (float)(radian % (Math.PI * 2.f));
@@ -24,6 +25,7 @@ public class DragonBones {
         }
         return radian;
     }
+
     public static float getEaseValue(float value, float easing){
         float valueEase = 1.f;
         // ease in out
@@ -42,6 +44,7 @@ public class DragonBones {
         }
         return (valueEase - value) * easing + value;
     }
+
     public static DisplayType getDisplayTypeByString(String displayType) {
         if (displayType.equals("image")) {
             return DisplayType.DT_IMAGE;
@@ -107,11 +110,13 @@ public class DragonBones {
         }
         return BlendMode.BM_NORMAL;
     }
+
     public enum PixelFormat {
         AUTO, RGBA8888, BGRA8888, RGBA4444, RGB888, RGB565, RGBA5551
     };
 
     public static String formatNames[] = {"", "RGBA8888", "BGRA8888", "RGBA4444", "RGB888", "RGB565", "RGBA5551"};
+
     public static PixelFormat getPixelFormatByString(String format) {
         int l = formatNames.length;
         for (int i = 0; i < l; ++i) {

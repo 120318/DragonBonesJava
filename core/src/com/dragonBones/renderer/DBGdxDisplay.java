@@ -29,23 +29,29 @@ public class DBGdxDisplay {
         position.x = x;
         dirty = true;
     }
+
     public float getX(){
         return position.x;
     }
+
     public void setY(float y){
         position.y = y;
         dirty = true;
     }
+
     public float getY(){
         return position.y;
     }
+
     public void setPosition(float x, float y){
         position.set(x, y);
         dirty = true;
     }
+
     public Vector2 getPosition(){
         return position;
     }
+
     public void setScale(float scaleX, float scaleY) {
         if (this.scaleX == scaleX && this.scaleY == scaleY) {
             return;
@@ -54,6 +60,7 @@ public class DBGdxDisplay {
         this.scaleY = scaleY;
         dirty = true;
     }
+
     public void setScaleX(float scaleX){
         if(this.scaleX == scaleX){
             return;
@@ -61,6 +68,7 @@ public class DBGdxDisplay {
         this.scaleX = scaleX;
         dirty = true;
     }
+
     public void setScaleY(float scaleY){
         if(this.scaleY == scaleY){
             return;
@@ -68,6 +76,7 @@ public class DBGdxDisplay {
         this.scaleY = scaleY;
         dirty = true;
     }
+
     public void setScale(float scale){
         if(scaleX == scale && scaleY == scale){
             return;
@@ -75,9 +84,11 @@ public class DBGdxDisplay {
         scaleX = scaleY = scale;
         dirty = true;
     }
+
     public float getScaleX(){
         return scaleX;
     }
+
     public float getScaleY(){
         return scaleY;
     }
@@ -105,6 +116,7 @@ public class DBGdxDisplay {
         this.height = height;
         dirty = true;
     }
+
     public void setWidth(float width){
         if(this.width == width){
             return;
@@ -112,9 +124,11 @@ public class DBGdxDisplay {
         this.width = width;
         dirty = true;
     }
+
     public float getWidth(){
         return width;
     }
+
     public void setHeight(float height){
         if(this.height == height){
             return;
@@ -125,6 +139,7 @@ public class DBGdxDisplay {
     public float getHeight(){
         return height;
     }
+
     public void setSkewX(float skewX){
         if(this.skewX == skewX){
             return;
@@ -135,12 +150,14 @@ public class DBGdxDisplay {
     public float getSkewX(){
         return skewX;
     }
+
     public void setSkewY(float skewY){
         if(this.skewY == skewY){
             return;
         }
         this.skewY = skewY;
     }
+
     public void setRotation(float rotation){
         if(rotationX == rotation){
             return;
@@ -211,12 +228,14 @@ public class DBGdxDisplay {
         this.transform = transform;
         dirty = true;
     }
+
     public void setParentTransform(Affine2 parentTransform){
         if(parentTransform != this.parentTransform){
             this.parentTransform = parentTransform;
         }
         dirty = true;
     }
+
     public Affine2 getGlobalTransform(){
         calTransformMatrix();
         globalTransform.set(transform);
@@ -226,11 +245,13 @@ public class DBGdxDisplay {
         return globalTransform;
     }
     public void setColor (float r, float g, float b, float a) {
+
     }
 
     public void setColor (float color) {
 
     }
+
     public void setVisible(boolean visible){
         if(visible != this.visible){
             this.visible = visible;
@@ -239,9 +260,11 @@ public class DBGdxDisplay {
             }
         }
     }
+
     public boolean isVisible(){
         return visible;
     }
+
     public void setAnchor(float x, float y) {
         anchorPoint.set(x * width, y * height);
         dirty = true;

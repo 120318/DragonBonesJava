@@ -20,15 +20,18 @@ public class DBGdxFactory extends BaseFactory {
     private float scale = 1.0f;
 
     private XMLDataParser parser;
+
     public static DBGdxFactory getInstance(){
         if(instance == null){
             instance = new DBGdxFactory();
         }
         return instance;
     }
+
     private DBGdxFactory(){
         parser = new XMLDataParser();
     }
+
     public void setScale(float scale){
         this.scale = scale;
     }
@@ -47,8 +50,6 @@ public class DBGdxFactory extends BaseFactory {
         return (DBGdxArmature)super.buildArmature(armatureName, skinName, animationName, dragonBonesName, textureAtlasName);
     }
 
-
-
     public DragonBonesData loadDragonBonesData(FileHandle dragonBonesFile, String name){
         DragonBonesData existDragonBonesData = getDragonBonesData(name);
         if (existDragonBonesData != null) {
@@ -58,6 +59,7 @@ public class DBGdxFactory extends BaseFactory {
         addDragonBonesData(dragonBonesData, name);
         return dragonBonesData;
     }
+
     public DBTextureAtlas loadTextureAtlas(FileHandle textureAtlasFile, String name){
         DBTextureAtlas existTextureAtlas = getTextureAtlas(name);
         if (existTextureAtlas != null) {
@@ -74,6 +76,7 @@ public class DBGdxFactory extends BaseFactory {
         refreshTextureAtlasTexture(name == null ? textureAtlas.textureAtlasData.name : name);
         return textureAtlas;
     }
+
     public void refreshTextureAtlasTexture(String name){
         for (String key : textureAtlasMap.keySet()) {
             DBGdxTextureAtlas textureAtlas = (DBGdxTextureAtlas)textureAtlasMap.get(key);
@@ -83,14 +86,16 @@ public class DBGdxFactory extends BaseFactory {
             }
         }
     }
+
     public void refreshAllTextureAtlasTexture(){
         for (String key : textureAtlasMap.keySet()) {
             DBGdxTextureAtlas textureAtlas = (DBGdxTextureAtlas)textureAtlasMap.get(key);
-            /*const */DBTextureAtlasData textureAtlasData = textureAtlas.textureAtlasData;
+            DBTextureAtlasData textureAtlasData = textureAtlas.textureAtlasData;
             textureAtlas.reloadTexture();
         }
     }
-    public boolean hasDragonBones(/*const*/ String skeletonName, /*const*/ String armatureName, /*const*/ String animationName){
+
+    public boolean hasDragonBones(String skeletonName, String armatureName, String animationName){
         DragonBonesData dragonbonesData = getDragonBonesData(skeletonName);
 
         if (dragonbonesData == null) {
@@ -110,20 +115,11 @@ public class DBGdxFactory extends BaseFactory {
         }
         return true;
     }
+
     @Override
     protected Armature generateArmature(ArmatureData armatureData) {
         Animation animation = new Animation();
-        // sprite
         DBGdxDisplay display = new DBGdxDisplay();
-        // in libgdx it doesn't need?
-        /*display->setCascadeColorEnabled(true);
-        display->setCascadeOpacityEnabled(true);
-        display->retain();*/
-        // eventDispatcher
-        /*DBGdxEventDispatcher eventDispatcher = new DBGdxEventDispatcher();
-        eventDispatcher.eventDispatcher = new cocos2d::EventDispatcher();
-        eventDispatcher->eventDispatcher->setEnabled(true);*/
-        // armature
         return new DBGdxArmature(armatureData, animation, new DBEventManager(), display);
     }
 
@@ -135,7 +131,6 @@ public class DBGdxFactory extends BaseFactory {
     @Override
     protected Object generateDisplay(DBTextureAtlas textureAtlas, DBTextureData textureData, DisplayData displayData) {
         DBGdxTextureAtlas dbGdxTextureAtlas = (DBGdxTextureAtlas)(textureAtlas);
-
         if (dbGdxTextureAtlas == null || textureData == null) {
             return null;
         }
@@ -151,13 +146,11 @@ public class DBGdxFactory extends BaseFactory {
         Rectangle rectangle = new Rectangle(x, y, width, height);
         DBGdxSpriteDisplay display = null;
         if (textureData.frame != null) {
-//             spriteframe !!!!!!!!!!!!!!!!!
             float frameX = -textureData.frame.x;
             float frameY = -textureData.frame.y;
             originSize.x = textureData.frame.width;
             originSize.y = textureData.frame.height;
             // offset = trimed center - origin center
-            // y use cocos2d coordinates
             offset.x = (width - originSize.x) * 0.5f + frameX;
             offset.y = (originSize.y - height) * 0.5f - frameY;
             display = new DBGdxSpriteDisplay(texture, rectangle, rotated, offset, originSize);
@@ -166,11 +159,6 @@ public class DBGdxFactory extends BaseFactory {
         {
             display = new DBGdxSpriteDisplay(texture, rectangle, rotated);
         }
-        // sprite
-
-        /*display->setCascadeColorEnabled(true);
-        display->setCascadeOpacityEnabled(true);
-        display->retain();*/
         float pivotX = 0.f;
         float pivotY = 0.f;
 

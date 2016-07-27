@@ -14,10 +14,11 @@ import com.dragonBones.textures.DBTextureAtlasData;
 import com.dragonBones.parsers.XMLDataParser;
 
 public class DBTextureAtlasLoader extends SynchronousAssetLoader<DBTextureAtlas, DBTextureAtlasLoader.DBTextureAtlasParameter>{
-    private DBTextureAtlasData data;
 
+    private DBTextureAtlasData data;
     private XMLDataParser parser = new XMLDataParser();
     private Texture texture;
+
     public DBTextureAtlasLoader(FileHandleResolver resolver) {
         super(resolver);
     }

@@ -7,7 +7,9 @@ import com.dragonBones.DragonBones;
 import com.dragonBones.core.Slot;
 
 public class DragonBonesRenderer {
+
     private boolean preMultipliedAlpha = true;
+
     public void render(SpriteBatch batch, Armature armature){
         for(Slot slot : armature.getSlots()){
             DBGdxSlot gdxSlot = (DBGdxSlot)slot;
@@ -39,6 +41,4 @@ public class DragonBonesRenderer {
                 }
         }
     }
-
-
 }
