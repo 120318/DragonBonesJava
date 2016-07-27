@@ -168,7 +168,6 @@ public class DemoKnight extends ApplicationAdapter{
         eventHandler = new DBEventHandler(){
             @Override
             public void handle(EventData eventData) {
-                super.handle(eventData);
                 switch (eventData.getType()){
                     case FADE_IN:
                         isComboAttack = false;

@@ -50,7 +50,6 @@ public class DemoDragonBoy extends ApplicationAdapter{
         armature.getDBEventManager().addHandle(new DBEventHandler(){
             @Override
             public void handle(EventData eventData) {
-                super.handle(eventData);
                 if(eventData.animationState != null){
                     Gdx.app.log("Animation name", eventData.animationState.name);
                     Gdx.app.log("Event Type", eventData.getType().toString());
