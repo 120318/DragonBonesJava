@@ -66,7 +66,9 @@ public class XmlReader {
             r = new InputStreamReader(input, "ISO-8859-1");
             return parse(r);
         } finally {
-            r.close();
+            if (r != null) {
+                r.close();
+            }
         }
     }
 
