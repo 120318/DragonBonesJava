@@ -1,6 +1,6 @@
 package com.dragonBones.renderer;
 
-import com.badlogic.gdx.graphics.GL11;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.dragonBones.core.Armature;
 import com.dragonBones.DragonBones;
@@ -34,10 +34,10 @@ public class DragonBonesRenderer {
         switch(blendMode){
             case BM_ADD:
                 if(preMultipliedAlpha){
-                    batch.setBlendFunction(GL11.GL_ONE, GL11.GL_ONE);
+                    batch.setBlendFunction(GL20.GL_ONE, GL20.GL_ONE);
                 }
                 else{
-                    batch.setBlendFunction(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+                    batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
                 }
         }
     }
