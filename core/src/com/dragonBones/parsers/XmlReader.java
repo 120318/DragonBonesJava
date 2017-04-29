@@ -78,9 +78,7 @@ public class XmlReader {
         } catch (Exception ex) {
             throw new RuntimeException("Error parsing file: " + file, ex);
         } finally {
-            if (is != null) {
-                is.close();
-            }
+            is.close();
         }
     }
 
