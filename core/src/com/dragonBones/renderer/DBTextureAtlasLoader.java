@@ -36,10 +36,10 @@ public class DBTextureAtlasLoader extends SynchronousAssetLoader<DBTextureAtlas,
     @Override
     public Array<AssetDescriptor> getDependencies(String fileName, FileHandle atlasFile, DBTextureAtlasParameter parameter) {
         if(parameter != null) {
-            data = parser.parseTextureAtlasData(atlasFile.file(), parameter.scale);
+            data = parser.parseTextureAtlasData(atlasFile.read(), parameter.scale);
         }
         else{
-            data = parser.parseTextureAtlasData(atlasFile.file(), 1.0f);
+            data = parser.parseTextureAtlasData(atlasFile.read(), 1.0f);
         }
         Array<AssetDescriptor> dependencies = new Array<AssetDescriptor>();
         FileHandle textureFile = resolve(data.imagePath);

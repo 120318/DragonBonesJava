@@ -8,6 +8,7 @@ import com.dragonBones.objects.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,10 +53,10 @@ public class XMLDataParser {
         frameRate = 30;
     }
 
-    public DragonBonesData parseDragonBonesData(File dragonBonesFile, float scale) {
+    public DragonBonesData parseDragonBonesData(InputStream is, float scale) {
 
         try {
-            element = reader.parse(dragonBonesFile);
+            element = reader.parse(is);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -72,9 +73,9 @@ public class XMLDataParser {
         return dragonBonesData;
     }
 
-    public DBTextureAtlasData parseTextureAtlasData(File textureAtlasFile, float scale) {
+    public DBTextureAtlasData parseTextureAtlasData(InputStream is, float scale) {
         try {
-            element = reader.parse(textureAtlasFile);
+            element = reader.parse(is);
         } catch (IOException e) {
             e.printStackTrace();
         }

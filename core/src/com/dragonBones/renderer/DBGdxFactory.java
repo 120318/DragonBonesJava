@@ -55,7 +55,7 @@ public class DBGdxFactory extends BaseFactory {
         if (existDragonBonesData != null) {
             return existDragonBonesData;
         }
-        DragonBonesData dragonBonesData = parser.parseDragonBonesData(dragonBonesFile.file(), scale);
+        DragonBonesData dragonBonesData = parser.parseDragonBonesData(dragonBonesFile.read(), scale);
         addDragonBonesData(dragonBonesData, name);
         return dragonBonesData;
     }
@@ -66,7 +66,7 @@ public class DBGdxFactory extends BaseFactory {
             refreshTextureAtlasTexture(name == null ? existTextureAtlas.textureAtlasData.name : name);
             return existTextureAtlas;
         }
-        DBTextureAtlasData dbTextureAtlasData = parser.parseTextureAtlasData(textureAtlasFile.file(), scale);
+        DBTextureAtlasData dbTextureAtlasData = parser.parseTextureAtlasData(textureAtlasFile.read(), scale);
         FileHandle textureFile = textureAtlasFile.parent().child(dbTextureAtlasData.imagePath);
         DBGdxTextureAtlas textureAtlas = new DBGdxTextureAtlas(dbTextureAtlasData, textureFile);
         // default is ClampToEdge wrap and linear Filter
