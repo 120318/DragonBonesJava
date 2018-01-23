@@ -11,4 +11,4 @@
 * [libGDX WebSite](https://libgdx.badlogicgames.com)
 
 ## 联系方式
-邮箱：hlj_ljz@163.com
+邮箱：jz.liu@outlook.com
