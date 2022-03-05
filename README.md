@@ -9,6 +9,3 @@
 ## 其他信息
 * [DragonBones WebSite](http://dragonbones.github.io/)
 * [libGDX WebSite](https://libgdx.badlogicgames.com)
-
-## 联系方式
-邮箱：jz.liu@outlook.com
